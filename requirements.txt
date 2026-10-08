@@ -1,0 +1,10 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+python-multipart>=0.0.9
+pypdf>=4.0
+pypdfium2>=0.10
+Pillow>=10.0
+ezdxf>=1.2
+matplotlib>=3.8
+openai>=1.30

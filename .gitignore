@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Data & uploads (sensitive)
+uploads/
+wadi_hanifa/
+*.pdf
+*.dxf
+
+# Logs
+*.log
+server*.err.log
+
+# Environment / secrets
+.env
+.env.*
+*.env
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/
