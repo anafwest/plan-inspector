@@ -4,7 +4,12 @@ import json
 import os
 import shutil
 import threading
-import winreg
+
+try:
+    import winreg
+except ImportError:  # non-Windows hosts (e.g. Linux containers)
+    winreg = None
+
 from dataclasses import asdict
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
@@ -12,6 +17,8 @@ from uuid import uuid4
 
 
 def _ensure_openai_env() -> None:
+    if winreg is None:
+        return
     for name in ("OPENAI_API_KEY", "OPENAI_BASE_URL", "OPENAI_MODEL", "INSPECTOR_DEBUG"):
         if os.environ.get(name):
             continue
