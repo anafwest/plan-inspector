@@ -13,7 +13,11 @@ import pypdfium2 as pdfium
 from PIL import Image, ImageDraw, ImageFont
 from pypdf import PdfReader
 
-ANNOTATED_DIR = os.path.join("uploads", "reports")
+def _data_dir() -> str:
+    return os.environ.get("DATA_DIR") or ("/data" if os.path.isdir("/data") else ".")
+
+
+ANNOTATED_DIR = os.path.join(_data_dir(), "uploads", "reports")
 
 VISION_MODEL = os.environ.get("OPENAI_MODEL", "gpt-4o")
 VISION_BASE_URL = os.environ.get("OPENAI_BASE_URL") or None
@@ -623,7 +627,7 @@ def _vlog(message: str) -> None:
 
 VISION_LAST_ERROR: Optional[str] = None
 VISION_MODEL_USED: Optional[str] = None
-_QUOTA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "uploads", ".vision_state.json")
+_QUOTA_FILE = os.path.join(_data_dir(), "uploads", ".vision_state.json")
 
 
 def _load_vision_state() -> dict:

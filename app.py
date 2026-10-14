@@ -47,7 +47,13 @@ app = FastAPI()
 
 MAX_FILE_SIZE = 20 * 1024 * 1024
 MAX_FILES = 10
-UPLOAD_DIR = "uploads"
+
+
+def _data_dir() -> str:
+    return os.environ.get("DATA_DIR") or ("/data" if os.path.isdir("/data") else ".")
+
+
+UPLOAD_DIR = os.path.join(_data_dir(), "uploads")
 
 # أنواع المخططات المدعومة: ملفات CAD، ونماذج ثلاثية الأبعاد، وصور مسح/رفع
 SUPPORTED_TYPES: dict[str, str] = {
